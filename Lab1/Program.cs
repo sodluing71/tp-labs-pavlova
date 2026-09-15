@@ -11,7 +11,7 @@ while (true)
 
     if (!int.TryParse(Console.ReadLine(), out int comand) || comand < 0 || comand > 4)
     {
-        Console.WriteLine("Ошибка: нужно целое число от 0 до 4");
+        Console.WriteLine("Ошибка: нужно ввести целое число от 0 до 4");
         Console.WriteLine();
         continue;
     }
@@ -26,7 +26,7 @@ while (true)
         case 1: Metod_Factorial(); break;
         case 2: Metod_Fibonachi(); break;
         case 3: Metod_Function(); break;
-        case 4: Console.WriteLine("Задание 4 - Metod_Teilora()"); break;
+        case 4: Metod_Teilora(); break;
     }
 }
 
@@ -37,7 +37,7 @@ static void Metod_Factorial()
 
     if (!int.TryParse(Console.ReadLine(), out int n) || n < 0 || n > 20)
     {
-        Console.WriteLine("Ошибка: нужно целое число от 0 до 20.");
+        Console.WriteLine("Ошибка: нужно ввести целое число от 0 до 20.");
         return;
     }
 
@@ -61,7 +61,7 @@ static void Metod_Fibonachi()
 
     if (!int.TryParse(Console.ReadLine(), out int n) || n < 1)
     {
-        Console.WriteLine("Ошибка: нужно целое число от 1");
+        Console.WriteLine("Ошибка: нужно ввести целое число от 1");
         Console.WriteLine();
         return;
     }
@@ -100,6 +100,49 @@ static void Metod_Function()
     }
     double result = Math.Sqrt(x - 54) + Math.Cos(x / 2) / Math.Sin(x * x) - Math.Log(x);
     Console.WriteLine($"A = {result}");
+    Console.WriteLine();
+    Console.WriteLine();
+}
+
+static void Metod_Teilora()
+{
+    Console.Write("Введите x (−1 < x ≤ 1): ");
+    if (!double.TryParse(Console.ReadLine(), out double x) || x <= -1 || x > 1)
+    {
+        Console.WriteLine("Ошибка: нужно ввести число в диапазоне −1 < x <= 1!");
+        Console.WriteLine();
+        return;
+    }
+
+    const double eps = 1e-6;
+    double sum = 0.0;
+    int n = 1;
+    int count = 0;
+
+    while (true)
+    {
+        // (-1)^(n+1) * x^n / n
+        double result = Math.Pow(x, n) / n;
+        if (n % 2 == 0)
+        {
+            result = -result;
+        }
+        if (Math.Abs(result) < eps)
+        {
+            break;
+        }
+
+        sum += result;
+        count++;
+        n++;
+    }
+
+    double mathResult = Math.Log(1 + x);
+
+    Console.WriteLine($"Сумма ряда:  {sum}");
+    Console.WriteLine($"Math.Log:    {mathResult}");
+    Console.WriteLine($"Разница:     {Math.Abs(sum - mathResult)}");
+    Console.WriteLine($"Количество суммированных членов:      {count}");
     Console.WriteLine();
     Console.WriteLine();
 }
