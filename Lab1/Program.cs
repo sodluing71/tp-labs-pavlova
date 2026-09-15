@@ -12,6 +12,7 @@ while (true)
     if (!int.TryParse(Console.ReadLine(), out int comand) || comand < 0 || comand > 4)
     {
         Console.WriteLine("Ошибка: нужно целое число от 0 до 4");
+        Console.WriteLine();
         continue;
     }
 
@@ -24,7 +25,7 @@ while (true)
     {
         case 1: Metod_Factorial(); break;
         case 2: Metod_Fibonachi(); break;
-        case 3: Console.WriteLine("Задание 3 - Metod_Function()"); break;
+        case 3: Metod_Function(); break;
         case 4: Console.WriteLine("Задание 4 - Metod_Teilora()"); break;
     }
 }
@@ -42,7 +43,7 @@ static void Metod_Factorial()
 
     Console.WriteLine($"{n}! = {Factorial(n)}");
     Console.WriteLine();
-    Console.ReadLine();
+
 }
 
 static long Factorial(int n)
@@ -58,15 +59,10 @@ static void Metod_Fibonachi()
 {
     Console.Write("Введите n (от 1): ");
 
-    if (!int.TryParse(Console.ReadLine(), out int n) || n < 0)
+    if (!int.TryParse(Console.ReadLine(), out int n) || n < 1)
     {
         Console.WriteLine("Ошибка: нужно целое число от 1");
-        return;
-    }
-
-    if (n == 0)
-    {
-        Console.WriteLine("Последовательность чисел Фибоначчи:" + n);
+        Console.WriteLine();
         return;
     }
 
@@ -85,3 +81,25 @@ static void Metod_Fibonachi()
     Console.WriteLine();
 }
 
+// Метод Функуции
+static void Metod_Function()
+{
+    Console.Write("Введите x (от 54): ");
+    if (!double.TryParse(Console.ReadLine(), out double x))
+    {
+        Console.WriteLine("Ошибка: нужно ввести число!");
+        Console.WriteLine();
+        return;
+    }
+    if (x<54)
+    {
+        Console.WriteLine("Ошибка в значение х!");
+        Console.WriteLine("Под коренным выражением должно быть неотрицательным");
+        Console.WriteLine();
+        return;
+    }
+    double result = Math.Sqrt(x - 54) + Math.Cos(x / 2) / Math.Sin(x * x) - Math.Log(x);
+    Console.WriteLine($"A = {result}");
+    Console.WriteLine();
+    Console.WriteLine();
+}
