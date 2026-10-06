@@ -6,17 +6,17 @@ public class FileCopier
 {
 	public bool FilePath (string filePath)
 	{
-		File.Exists(filePath);
+		return File.Exists(filePath);
     }
 
-	public bool Directory(string directoryPath)
+	public bool DirectoryPath (string directoryPath)
 	{
-		Directory.Exists(directoryPath);
+        return Directory.Exists(directoryPath);
 	}
 
 	public bool Proverka (string directoryPath, string fileName)
 	{
-		sring newPath = newPath.Combine(directoryPath, fileName);
+		string newPath = Path.Combine(directoryPath, fileName);
 		return File.Exists(newPath);
     }
 
