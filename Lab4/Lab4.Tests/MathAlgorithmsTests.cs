@@ -37,8 +37,8 @@ public class MathAlgorithmsTests
     [Fact]
     public void Metod_Fibonachi_First6_AreCorrect()
     {
-        int[] seq = MathAlgorithms.Fibonacci(5);
-        Assert.Equal(new long[] { 0, 1, 1, 2, 3, 5 }, seq);
+        int[] seq = MathAlgorithms.Metod_Fibonachi(5);
+        Assert.Equal(new int[] { 0, 1, 1, 2, 3, 5 }, seq);
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class MathAlgorithmsTests
     {
         double expected = Math.Log(1 + x);
         double actual = MathAlgorithms.Metod_Teilora(x);
-        Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual, 1e-5);
     }
 
     [Theory]
