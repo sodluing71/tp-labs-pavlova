@@ -18,7 +18,7 @@ for (int i = 0; i < N; i++)
 
 // --- 2. Список уникальных покупателей ---
 var sw = Stopwatch.StartNew();
-var unique = new HashSet<string>();     // //УЗКОЕ МЕСТО №2 (Поиск внутри списка на коллекцию)
+var unique = new HashSet<string>();     // УЗКОЕ МЕСТО №2 (Поиск внутри списка на коллекцию)
 for (int i = 0; i < buyers.Count; i++)
 {           
         unique.Add(buyers[i]);
@@ -31,7 +31,7 @@ sw.Restart();
 var str = new StringBuilder();
 for (int i = 0; i < buyers.Count; i++)
 {
-    str.Append(buyers[i] + ";" + amounts[i] + Environment.NewLine);  //УЗКОЕ МЕСТО №1 (Конкатенация строк +=)
+    str.Append(buyers[i] + ";" + amounts[i] + Environment.NewLine);  // УЗКОЕ МЕСТО №1 (Конкатенация строк +=)
 }
 string report = str.ToString();
 Console.WriteLine($"Отчёт: {report.Length} символов  ({sw.ElapsedMilliseconds} мс)");
@@ -40,10 +40,7 @@ Console.WriteLine($"Отчёт: {report.Length} символов  ({sw.ElapsedMi
 // --- 4. Сортировка сумм ---
 sw.Restart();
 var sorted = new List<int>(amounts);
-for (int i = 0; i < sorted.Count - 1; i++)    
-    for (int j = 0; j < sorted.Count - i - 1; j++)
-        if (sorted[j] > sorted[j + 1])
-            (sorted[j], sorted[j + 1]) = (sorted[j + 1], sorted[j]);
+sorted.Sort();      // УЗКОЕ МЕСТО №3 (самодельная сортировка "пузырек" взамен готовой)
 Console.WriteLine($"Медианная сумма: {sorted[sorted.Count / 2]}  ({sw.ElapsedMilliseconds} мс)");
 
 
