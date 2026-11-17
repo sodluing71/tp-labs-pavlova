@@ -29,11 +29,12 @@ Console.WriteLine($"Уникальных покупателей: {unique.Count} 
 
 // --- 3. Текстовый отчёт ---
 sw.Restart();
-string report = "";
+var str = new StringBuilder();
 for (int i = 0; i < buyers.Count; i++)
 {
-    report += buyers[i] + ";" + amounts[i] + Environment.NewLine;  
+    str.Append(buyers[i] + ";" + amounts[i] + Environment.NewLine);  //УЗКОЕ МЕСТО №1 (Конкатенация строк +=)
 }
+string report = str.ToString();
 Console.WriteLine($"Отчёт: {report.Length} символов  ({sw.ElapsedMilliseconds} мс)");
 
 
